@@ -1,18 +1,33 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Current Year for Footer
-    const yearSpan = document.getElementById('year');
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-    }
+window.onload = () => {
+  const boatWrapper = document.getElementById('boat-wrapper');
+  const bubble = document.getElementById('speech-bubble');
 
-    // Smooth scroll for nav links
-    document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            document.querySelector(targetId).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
+  // Only run the boat animation if the boat elements exist on the page
+  if (boatWrapper && bubble) {
+    setTimeout(() => { boatWrapper.style.left = '40%'; }, 500);
+
+    setTimeout(() => {
+      bubble.style.opacity = '1';
+      bubble.innerText = 'Hi!';
+      bubble.style.transform = 'translateY(0)';
+      
+      // Trigger the hand wave shortly after "Hi!"
+      setTimeout(() => {
+        const wavingArm = document.getElementById('waving-arm');
+        if (wavingArm) {
+          wavingArm.classList.add('wave-action');
+        }
+      }, 200);
+
+    }, 3500);
+
+    setTimeout(() => {
+      bubble.innerText = 'About Me';
+      boatWrapper.classList.add('wiggle');
+    }, 5500);
+
+    boatWrapper.addEventListener('click', () => {
+      window.location.href = 'about.html';
     });
-});
+  }
+};
