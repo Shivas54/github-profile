@@ -6,9 +6,9 @@
 /* --- LIGHT / DARK MODE VARIABLES --- */
 :root {
   color-scheme: light dark;
-  --paper-bg:      light-dark(#fdfbf7, #1a1a1a);
+  --paper-bg:      light-dark(#fdfbf7, #000000);
   --ink-color:     light-dark(#2c2c2c, #e0e0e0);
-  --box-bg:        light-dark(#ffffff, #252525);
+  --box-bg:        light-dark(#ffffff, #111111);
   --grid-color:    light-dark(#d1d1d1, rgba(255,255,255,0.05));
   --note-bg:       light-dark(#fef08a, #857c2e);
   --cert-note-bg:  light-dark(#a7f3d0, #1e3a2f);
@@ -78,37 +78,13 @@ h1, h2, h3 { font-family: 'Architects Daughter', cursive; }
   gap: 4rem;
 }
 .hero-content { 
-  flex: 1 1 50%; /* Changed this line */
+  flex: 1 1 50%;
   max-width: 600px; 
   z-index: 2; 
 }
 
 .hero-visual { 
-  flex: 1 1 50%; /* Changed this line */
-  display: flex; 
-  justify-content: center; 
-  z-index: 2; 
-}
-.hero-content { flex: 1; max-width: 600px; z-index: 2; }.hero-content { 
-  flex: 1 1 50%; /* Changed this line */
-  max-width: 600px; 
-  z-index: 2; 
-}
-
-.hero-visual { 
-  flex: 1 1 50%; /* Changed this line */
-  display: flex; 
-  justify-content: center; 
-  z-index: 2; 
-}
-.hero-visual   { flex: 1; display: flex; justify-content: center; z-index: 2; }.hero-content { 
-  flex: 1 1 50%; /* Changed this line */
-  max-width: 600px; 
-  z-index: 2; 
-}
-
-.hero-visual { 
-  flex: 1 1 50%; /* Changed this line */
+  flex: 1 1 50%;
   display: flex; 
   justify-content: center; 
   z-index: 2; 
@@ -134,12 +110,20 @@ h1, h2, h3 { font-family: 'Architects Daughter', cursive; }
   white-space: nowrap;
 }
 
-.typewriter {
+.wave-emoji {
   display: inline-block;
-  min-width: 300px; /* Reserves space for "Shivas Arulselvam" */
-  white-space: nowrap;
+  transform-origin: 70% 70%;
+  animation: waveEmoji 2.5s ease-in-out 1;
 }
-@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes waveEmoji {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60%, 100% { transform: rotate(0deg); }
+}
 
 /* --- HIGHLIGHT --- */
 .highlight-text {
@@ -329,17 +313,24 @@ h1, h2, h3 { font-family: 'Architects Daughter', cursive; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 1rem;
-  padding: 1.5rem 0 2rem;
+  padding: 1rem 0;
   margin-bottom: 2rem;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--paper-bg);
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+.nav-bar::-webkit-scrollbar { display: none; }
 
 .nav-menu {
   display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
 }
 
 /* Active nav link */
